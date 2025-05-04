@@ -15,8 +15,10 @@ A classic two-player Tic-Tac-Toe game built with **Java Swing**. Players take tu
    git clone https://github.com/abdelrahmanelsafty75/TicTacToe-Java.git
 2. Compile and run:
    ```bash
-javac TicTacToe.java
-java TicTacToe
+   javac TicTacToe.java
+   java TicTacToe
+
+   Alternatively, if you're using an IDE, simply open the project, build, and run the TicTacToe.java file.
 
 ## How to Play 🎲
 Click an empty cell to place "X" or "O".
@@ -29,4 +31,5 @@ Implement draw condition.
 More optimization on functions.
 
 Enjoy the game! 😄
+
 

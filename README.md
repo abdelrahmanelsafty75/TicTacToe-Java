@@ -8,6 +8,8 @@ A classic two-player Tic-Tac-Toe game built with **Java Swing**. Players take tu
 - Random first turn and win detection (highlights winning line in green).
 - Dark theme with cyan text.
 
+## Screenshots 📸
+![TicTacToe Game](assets/screenshot.png)
 
 ## Setup 🚀
 1. Clone the repo:
@@ -18,7 +20,7 @@ A classic two-player Tic-Tac-Toe game built with **Java Swing**. Players take tu
    javac TicTacToe.java
    java TicTacToe
 
-   Alternatively, if you're using an IDE, simply open the project, build, and run the TicTacToe.java file.
+Alternatively, if you're using an IDE, simply open the project, build, and run the TicTacToe.java file.
 
 ## How to Play 🎲
 Click an empty cell to place "X" or "O".

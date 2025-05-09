@@ -10,7 +10,10 @@ A simple Java-based Tic-Tac-Toe game implemented using Swing for the graphical u
 - Draw detection when the grid is full with no winner.
 
 ## Screenshots 📸
-![TicTacToe Game Screenshot](assets/screenshot%20(2).png)
+![TicTacToe Home Page](https://raw.githubusercontent.com/abdelrahmanelsafty75/TicTacToe-Java/main/assets/screenshot-(2).png)
+![TicTacToe Gameplay.1](https://raw.githubusercontent.com/abdelrahmanelsafty75/TicTacToe-Java/main/assets/screenshot-(4).png)
+![TicTacToe Gameplay.2](https://raw.githubusercontent.com/abdelrahmanelsafty75/TicTacToe-Java/main/assets/screenshot-(5).png)
+
 
 ## Prerequisites
 Java Development Kit (JDK): Version 8 or higher.

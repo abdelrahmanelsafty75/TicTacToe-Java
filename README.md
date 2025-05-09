@@ -1,17 +1,16 @@
 # TicTacToe Game 🎮
+A simple Java-based Tic-Tac-Toe game implemented using Swing for the graphical user interface (GUI). This game now supports both two-player mode and a single-player mode against an AI opponent, offering an engaging experience with a 3x3 grid and interactive features.
 
-A classic two-player Tic-Tac-Toe game built with **Java Swing**. Players take turns placing "X" or "O" on a 3x3 grid to win by aligning three symbols horizontally, vertically, or diagonally.
-
-## Features ✨
-Two-player mode with alternating turns ("X" and "O").
-Home page with a welcome message and navigation options.
-Instructions dialog box explaining the game rules.
-Highlighting of winning combinations in green.
-Draw detection when the grid is full with no winner.
-Restart button to reset the game.
+## Features
+- Two-player mode with alternating turns ("X" and "O").
+- Single-player mode with an AI opponent (random move logic).
+- Home page with "Play vs Human," "Play vs AI," and "View Instructions" options.
+- Instructions dialog box explaining game rules for both modes.
+- Highlighting of winning combinations in green.
+- Draw detection when the grid is full with no winner.
 
 ## Screenshots 📸
-![TicTacToe Game](assets/screenshot.png)
+![TicTacToe Game Screenshot](assets/screenshot%20(2).png)
 
 ## Prerequisites
 Java Development Kit (JDK): Version 8 or higher.
@@ -34,7 +33,6 @@ First to align three symbols wins (line turns green).
 Restart by closing and reopening the game.
 
 ## Future Improvements 🔮
- Add AI opponent
  Add score tracking
  Add difficulty levels
  Improve layout responsiveness

@@ -38,7 +38,6 @@ Restart by closing and reopening the game.
  Add score tracking
  Add difficulty levels
  Improve layout responsiveness
- 
-Enjoy the game! 😄
 
+Enjoy the game! 😄
 

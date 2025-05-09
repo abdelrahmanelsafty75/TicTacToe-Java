@@ -104,6 +104,16 @@ public class TicTacToe implements ActionListener {
                 return;
             }
         }
+        boolean draw = true;
+        for (JButton button : buttons) {
+            if (button.getText().isEmpty()) {
+                draw = false;
+                break;
+            }
+        }
+        if (draw) {
+            drawGame();
+        }
     }
     public void xWins ( int x, int y, int z){
        highlightWinner(x, y, z);
@@ -117,6 +127,14 @@ public class TicTacToe implements ActionListener {
         buttons[x].setBackground(Color.GREEN);
         buttons[y].setBackground(Color.GREEN);
         buttons[z].setBackground(Color.GREEN);
+    //  textLabel.setForeground(Color.GREEN);
+        for (JButton button : buttons) {
+            button.setEnabled(false);
+        }
+    }
+    public void drawGame() {
+        textLabel.setText("Draw!");
+        textLabel.setForeground(Color.lightGray);
         for (JButton button : buttons) {
             button.setEnabled(false);
         }
@@ -127,6 +145,7 @@ public class TicTacToe implements ActionListener {
             buttons[i].setEnabled(true);
             buttons[i].setBackground(new Color(96, 151, 167  ));
         }
+        textLabel.setForeground(Color.CYAN);
         firstTurn();
     }
 

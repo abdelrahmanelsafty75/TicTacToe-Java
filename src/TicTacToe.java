@@ -12,8 +12,13 @@ public class TicTacToe implements ActionListener {
     JPanel buttonPanel = new JPanel();
     JLabel textLabel = new JLabel();
     JButton[] buttons = new JButton[9];
-    JButton restartButton = new JButton("Restart");
     Boolean playerTurn;
+
+    JButton restartButton = new JButton("Restart");
+
+    JPanel homepagePanel = new JPanel();  // صفحة البداية
+    JButton playButton = new JButton("Play Game");
+    JButton instructionsButton = new JButton("View Instructions");
 
     public TicTacToe() {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -22,7 +27,30 @@ public class TicTacToe implements ActionListener {
         frame.getContentPane().setBackground(Color.white);
 
         frame.setVisible(true);
+        homepagePanel.setLayout(null);
+        homepagePanel.setBackground(Color.darkGray);
 
+        JLabel homepageLabel = new JLabel("Welcome to TicTacToe Game!");
+        homepageLabel.setForeground(Color.CYAN);
+        homepageLabel.setFont(new Font("Times New Roman", Font.PLAIN, 50));
+        homepageLabel.setHorizontalAlignment(JLabel.CENTER);
+        homepageLabel.setBounds(150, 100, 500, 60);
+
+        playButton.setBounds(300, 250, 200, 50);
+        playButton.setFocusable(false);
+        playButton.addActionListener(this);
+
+        instructionsButton.setBounds(300, 350, 200, 50);
+        instructionsButton.setFocusable(false);
+        instructionsButton.addActionListener(this);
+
+        homepagePanel.add(homepageLabel);
+        homepagePanel.add(playButton);
+        homepagePanel.add(instructionsButton);
+
+        frame.add(homepagePanel);
+    }
+    public void setupGame(){
         textLabel.setBackground(new Color(25, 25, 25));
         textLabel.setForeground(Color.CYAN);
         textLabel.setFont(new Font("Times New Roman", Font.PLAIN, 75));
@@ -51,10 +79,29 @@ public class TicTacToe implements ActionListener {
 
         frame.add(titlePanel, BorderLayout.NORTH);
         frame.add(buttonPanel);
+        frame.revalidate();
+        frame.repaint();
         firstTurn();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == playButton) {
+            frame.remove(homepagePanel);
+            setupGame();
+            return;
+        }
+
+        if (e.getSource() == instructionsButton) {
+            JOptionPane.showMessageDialog(frame,
+            "TicTacToe Instructions:\n" +
+             "1. Players take turns placing 'X' or 'O' on a 3x3 grid.\n" +
+             "2. The first player to get 3 marks in a row (horizontal, vertical, or diagonal) wins.\n" +
+             "3. If all cells are filled without a winner, the game is a draw.",
+                    "Instructions", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         for (int i = 0; i < 9; i++) {
             if (e.getSource() == buttons[i]) {
                 if (buttons[i].getText().isEmpty()) {

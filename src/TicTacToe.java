@@ -12,6 +12,7 @@ public class TicTacToe implements ActionListener {
     JPanel buttonPanel = new JPanel();
     JLabel textLabel = new JLabel();
     JButton[] buttons = new JButton[9];
+    JButton restartButton = new JButton("Restart");
     Boolean playerTurn;
 
     public TicTacToe() {
@@ -28,6 +29,16 @@ public class TicTacToe implements ActionListener {
         textLabel.setHorizontalAlignment(JLabel.CENTER);
         textLabel.setOpaque(true);
 
+        titlePanel.setLayout(new BorderLayout());
+        titlePanel.setBounds(0, 0, 800, 100);
+        titlePanel.add(textLabel);
+
+        restartButton.setFont(new Font("Arial", Font.PLAIN, 30));
+        restartButton.setFocusable(false);
+        restartButton.setBackground(new Color(167, 218, 232 ));
+        restartButton.addActionListener(e -> restartGame());
+        titlePanel.add(restartButton, BorderLayout.EAST);
+
         buttonPanel.setLayout(new GridLayout(3, 3));
         for (int i = 0; i < 9; i++) {
             buttons[i] = new JButton();
@@ -38,9 +49,6 @@ public class TicTacToe implements ActionListener {
             buttons[i].addActionListener(this);
         }
 
-        titlePanel.setLayout(new BorderLayout());
-        titlePanel.setBounds(0, 0, 800, 100);
-        titlePanel.add(textLabel);
         frame.add(titlePanel, BorderLayout.NORTH);
         frame.add(buttonPanel);
         firstTurn();
@@ -112,6 +120,14 @@ public class TicTacToe implements ActionListener {
         for (JButton button : buttons) {
             button.setEnabled(false);
         }
+    }
+    public void restartGame() {
+        for (int i = 0; i < 9; i++) {
+            buttons[i].setText("");
+            buttons[i].setEnabled(true);
+            buttons[i].setBackground(new Color(96, 151, 167  ));
+        }
+        firstTurn();
     }
 
 }

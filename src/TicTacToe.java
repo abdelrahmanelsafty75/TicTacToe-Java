@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TicTacToe implements ActionListener {
@@ -16,8 +17,11 @@ public class TicTacToe implements ActionListener {
 
     JButton restartButton = new JButton("Restart");
 
+    Boolean isAIMode = false;
+
     JPanel homepagePanel = new JPanel();
-    JButton playButton = new JButton("Play Game");
+    JButton playHumanButton = new JButton("Play vs Human");
+    JButton playAIButton = new JButton("Play vs AI");
     JButton instructionsButton = new JButton("View Instructions");
 
     public TicTacToe() {
@@ -36,16 +40,21 @@ public class TicTacToe implements ActionListener {
         homepageLabel.setHorizontalAlignment(JLabel.CENTER);
         homepageLabel.setBounds(150, 100, 500, 60);
 
-        playButton.setBounds(300, 250, 200, 50);
-        playButton.setFocusable(false);
-        playButton.addActionListener(this);
+        playHumanButton.setBounds(300, 250, 200, 50);
+        playHumanButton.setFocusable(false);
+        playHumanButton.addActionListener(this);
 
-        instructionsButton.setBounds(300, 350, 200, 50);
+        playAIButton.setBounds(300, 320, 200, 50); // Positioned below "Play vs Human"
+        playAIButton.setFocusable(false);
+        playAIButton.addActionListener(this);
+
+        instructionsButton.setBounds(300, 390, 200, 50);
         instructionsButton.setFocusable(false);
         instructionsButton.addActionListener(this);
 
         homepagePanel.add(homepageLabel);
-        homepagePanel.add(playButton);
+        homepagePanel.add(playHumanButton);
+        homepagePanel.add(playAIButton);
         homepagePanel.add(instructionsButton);
 
         frame.add(homepagePanel);
@@ -85,7 +94,13 @@ public class TicTacToe implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == playButton) {
+        if (e.getSource() == playHumanButton) {
+            frame.remove(homepagePanel);
+            setupGame();
+            return;
+        }
+        if (e.getSource() == playAIButton) {
+            isAIMode = true;
             frame.remove(homepagePanel);
             setupGame();
             return;
@@ -104,20 +119,59 @@ public class TicTacToe implements ActionListener {
         for (int i = 0; i < 9; i++) {
             if (e.getSource() == buttons[i]) {
                 if (buttons[i].getText().isEmpty()) {
-                    if (playerTurn) {
+                    if (isAIMode) {
                         buttons[i].setText("X");
                         buttons[i].setForeground(Color.BLUE);
-                        textLabel.setText("O turn");
+                        textLabel.setText("AI (O) turn");
+                        playerTurn = false;
+                        checkWinner();
+                        if (gameIsActive()) {
+                            aiMove();
+                        }
                     } else {
-                        buttons[i].setText("O");
-                        buttons[i].setForeground(Color.RED);
-                        textLabel.setText("X turn");
+
+                        if (playerTurn) {
+                            buttons[i].setText("X");
+                            buttons[i].setForeground(Color.BLUE);
+                            textLabel.setText("O turn");
+                        } else {
+                            buttons[i].setText("O");
+                            buttons[i].setForeground(Color.RED);
+                            textLabel.setText("X turn");
+                        }
+                        playerTurn = !playerTurn;
+                        checkWinner();
                     }
-                    playerTurn = !playerTurn;
-                    checkWinner();
                 }
             }
         }
+    }
+    public void aiMove() {
+        ArrayList<Integer> emptygrids = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            if (buttons[i].getText().isEmpty()) {
+                emptygrids.add(i);
+            }
+        }
+
+        if (!emptygrids.isEmpty()) {
+            int randomIndex = random.nextInt(emptygrids.size());
+            int aigrid = emptygrids.get(randomIndex);
+            buttons[aigrid].setText("O");
+            buttons[aigrid].setForeground(Color.RED);
+            textLabel.setText("Your turn (X)");
+            playerTurn = true;
+            checkWinner();
+        }
+    }
+
+    public boolean gameIsActive() {
+        for (JButton button : buttons) {
+            if (button.isEnabled()) {
+                return true;
+            }
+        }
+        return false;
     }
     public void firstTurn () {
         if (random.nextInt(2) == 0) {
@@ -163,11 +217,11 @@ public class TicTacToe implements ActionListener {
     }
     public void xWins ( int x, int y, int z){
        highlightWinner(x, y, z);
-        textLabel.setText("X wins");
+        textLabel.setText(isAIMode ? "You win (X)!" : "(X) wins!");
     }
     public void oWins ( int x, int y, int z){
         highlightWinner(x, y, z);
-        textLabel.setText("O wins");
+        textLabel.setText(isAIMode ? "AI wins (O)!" : "(O) wins!");
     }
     public void highlightWinner(int x, int y, int z) {
         buttons[x].setBackground(Color.GREEN);

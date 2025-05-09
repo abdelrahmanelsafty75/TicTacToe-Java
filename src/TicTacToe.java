@@ -16,7 +16,7 @@ public class TicTacToe implements ActionListener {
 
     JButton restartButton = new JButton("Restart");
 
-    JPanel homepagePanel = new JPanel();  // صفحة البداية
+    JPanel homepagePanel = new JPanel();
     JButton playButton = new JButton("Play Game");
     JButton instructionsButton = new JButton("View Instructions");
 
@@ -63,7 +63,8 @@ public class TicTacToe implements ActionListener {
 
         restartButton.setFont(new Font("Arial", Font.PLAIN, 30));
         restartButton.setFocusable(false);
-        restartButton.setBackground(new Color(167, 218, 232 ));
+        restartButton.setBackground(new Color(96, 151, 167 ));
+        restartButton.setForeground(Color.black);
         restartButton.addActionListener(e -> restartGame());
         titlePanel.add(restartButton, BorderLayout.EAST);
 
@@ -79,8 +80,6 @@ public class TicTacToe implements ActionListener {
 
         frame.add(titlePanel, BorderLayout.NORTH);
         frame.add(buttonPanel);
-        frame.revalidate();
-        frame.repaint();
         firstTurn();
     }
     @Override
